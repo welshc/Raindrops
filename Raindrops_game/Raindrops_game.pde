@@ -2,7 +2,7 @@ Raindrop[] r = new Raindrop[100];
 Catcher catcher;
 
 void setup() {
-  size(500, 700);
+  size(300, 500);
   for (int i = 0; i < r.length; i++) {
     r[i] = new Raindrop();
   } 
@@ -10,7 +10,7 @@ void setup() {
 }
 
 void draw() {
-  background(200, 230, 255);
+  background(198, 227, 253);
   for (int i = 0; i < r.length; i++) {
     r[i].display();
     r[i].drop();
