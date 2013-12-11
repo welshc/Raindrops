@@ -1,25 +1,21 @@
 class Raindrop {
-  PVector loc, vel, acc;
+  PVector loc, vel;
   int d;
 
   Raindrop() {
     d = 10;
-    loc = new PVector(random(0, width), -d); 
-    vel = new PVector(0, random(0, .1));
-    acc = new PVector(0, .01);
+    //this displays the raindrop in different places
+    loc = new PVector(random(0, width-d/2), -d); 
+    vel = new PVector(0, random(2, 8));
   }
 
   void display() {
+    fill(62, 255, 5);
     ellipse(loc.x, loc.y, d, d);
   }
   void drop() {
-    vel.add(acc);
+    //this allows each raindrop to fall at different velocities
     loc.add(vel);
-  }
-  void wrapAround() {
-    if (loc.y > height) {
-      loc.y = 0;
-    }
   }
 }
 
