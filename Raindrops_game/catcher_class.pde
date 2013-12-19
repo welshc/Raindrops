@@ -16,10 +16,10 @@ class Catcher {
   void update() {
     if (keyPressed && key == CODED) {
       if (keyCode == LEFT) {
-        loc.x--;
+        loc.x-=3;
       }
       if (keyCode == RIGHT) {
-        loc.x++;
+        loc.x+=3;
       }
     }
     loc.x = constrain(loc.x, 0, width);
