@@ -5,17 +5,18 @@ class Catcher {
   PImage bag;
 
   Catcher() {
-    //this makes the catcher follow the mouse
+    //this defines the catcher's location and velocity and loads the image
     loc = new PVector(x, height/1.2);
     d = 100;
     bag = loadImage("bag.png");
   }
   void display() {
-    fill(255, 31, 214);
+    //this allows the catcher to be displayed
     image(bag, loc.x, loc.y, d, d);
   }
 
   void update() {
+    //this allows the catcher to move with the arrow keys
     if (keyPressed && key == CODED) {
       if (keyCode == LEFT) {
         loc.x-=3;
@@ -24,18 +25,19 @@ class Catcher {
         loc.x+=3;
       }
     }
+    //this makes sure the catcher doesn't leave the screen
     loc.x = constrain(loc.x, 0, width-d);
   }
 
   void catchDrop(Raindrop drop) {
-    //this means the catcher catches the raindrop, and the score increases by 1
+    //this means the catcher catches the present, and the score increases by 1
     if (loc.dist(drop.loc) < d/2+drop.d/2) {
       drop.loc.set(-width, height*10);
       score++;
     }
   }
   void catchDrop(Coal drop) {
-    //this means the catcher catches the raindrop, and the score increases by 1
+    //this means the catcher catches the coal, and the score decreases by 1
     if (loc.dist(drop.loc) < d/2+drop.d/2) {
       drop.loc.set(-width, height*10);
       score--;
