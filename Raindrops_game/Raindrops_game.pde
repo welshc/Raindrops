@@ -8,13 +8,19 @@ int flashold = 0;
 int flashcurrent = 0;
 int flashchange = 0;
 boolean flash;
-Raindrop[] r = new Raindrop[800];
+PImage sleigh;
+Raindrop[] r = new Raindrop[200];
+Coal[] c = new Coal[200];
 Catcher catcher;
 
 void setup() {
-  size(300, 500);
+  size(600, 500);
+  sleigh = loadImage("sleigh.png");
   for (int i = 0; i < r.length; i++) {
     r[i] = new Raindrop();
+  } 
+  for (int i = 0; i < c.length; i++) {
+    c[i] = new Coal();
   } 
   catcher = new Catcher();
   run = false;
@@ -25,10 +31,11 @@ void draw() {
   background(0);
   if ( run == true) {
     fill(0);
-    textSize(50);
-    fill(210, 255, 13);
+    textSize(30);
+    fill(255);
     //this displays the score
-    text(score, width/2, height/10);
+    image(sleigh, 30, height/15 , 150, 150);
+    text(score, 143, height/5);
     //this says that if the score is 10 points, you win. 
     if (score >= 10) {
       fill(210, 255, 13);
@@ -36,18 +43,30 @@ void draw() {
       text("you win!", width/2, height/4);
       text("play again", width/2, height/2);
     }
+    if (score <= -5) {
+      fill(210, 255, 13);
+      textAlign(CENTER);
+      text("you lose!", width/2, height/4);
+      text("play again", width/2, height/2);
+    }
     current = millis();
     change = current - old;
     for (int i = 0; i < index; i++) {
       r[i].display();
       r[i].drop();
+      c[i].display();
+      c[i].drop();
       catcher.catchDrop(r[i]);
+      catcher.catchDrop(c[i]);
     }
     //this allows the raindrops to fall at an interval of 2 seconds
     if (change >= 2000) {        
       old = current;
 
       if (index < r.length) {
+        index++;
+      }
+      if (index < c.length) {
         index++;
       }
     }
@@ -73,7 +92,7 @@ void keyPressed() {
 }
 
 void mousePressed() {
-  if (mouseX <= width/2 && mouseX >= width/4 && mouseY <= height/2 && mouseY >= height/4 && score >= 10) {
+  if (mouseX <= width/2 && mouseX >= width/4 && mouseY <= height/2 && mouseY >= height/4 && score >= 10 || score<=-5) {
     score = 0;
   }
 }
