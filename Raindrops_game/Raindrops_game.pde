@@ -9,12 +9,14 @@ int flashcurrent = 0;
 int flashchange = 0;
 boolean flash;
 PImage sleigh;
+//this is an array of presents and an array of coal
 Raindrop[] r = new Raindrop[200];
 Coal[] c = new Coal[200];
 Catcher catcher;
 
 void setup() {
   size(600, 500);
+  //this is the image behind the score
   sleigh = loadImage("sleigh.png");
   for (int i = 0; i < r.length; i++) {
     r[i] = new Raindrop();
@@ -38,13 +40,14 @@ void draw() {
     text(score, 143, height/5);
     //this says that if the score is 10 points, you win. 
     if (score >= 10) {
-      fill(210, 255, 13);
+      fill(255);
       textAlign(CENTER);
       text("you win!", width/2, height/4);
       text("play again", width/2, height/2);
     }
+    //this says that if the score is -5 points, you lose.
     if (score <= -5) {
-      fill(210, 255, 13);
+      fill(255);
       textAlign(CENTER);
       text("you lose!", width/2, height/4);
       text("play again", width/2, height/2);
@@ -73,9 +76,10 @@ void draw() {
     catcher.display();
     catcher.update();
   }
+  //this is the start screen.
   else {
     textSize(15);
-    fill(210, 255, 13);
+    fill(255);
     flashcurrent = millis();
     flashchange = flashcurrent - flashold;
     if (flashchange >= 1000) {        
@@ -85,12 +89,13 @@ void draw() {
       text("[PRESS ANY KEY TO START]", width/5, height/2);
     }
   }
+  
 }
-//this says that if you click where "play again" is displayed (after you win), a new game will begin
+//this says that if you click any key, the game will start
 void keyPressed() {
   run = true;
 }
-
+//this says that if you click where "play again" is displayed (after you win or lose), a new game will begin
 void mousePressed() {
   if (mouseX <= width/2 && mouseX >= width/4 && mouseY <= height/2 && mouseY >= height/4 && score >= 10 || score<=-5) {
     score = 0;

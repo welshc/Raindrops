@@ -5,6 +5,7 @@ class Raindrop {
 
   Raindrop() {
     d = 30;
+    //this loads the present and defines its location and velocity
     present = loadImage("present.png");
     //this displays the raindrop in different places
     loc = new PVector(random(0, width-d/2), -d); 
@@ -12,11 +13,11 @@ class Raindrop {
   }
 
   void display() {
-    fill(62, 255, 5);
+//this allows the present to be displayed
     image(present, loc.x, loc.y, d, d);
   }
   void drop() {
-    //this allows each raindrop to fall at different velocities
+    //this allows each present to fall at different velocities
     loc.add(vel);
   }
 }

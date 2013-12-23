@@ -5,18 +5,18 @@ class Coal {
 
   Coal() {
     d = 30;
-    //this displays the raindrop in different places
+    //this loads the coal and defines its location and velocity
     coal = loadImage("coal.png");
     loc = new PVector(random(0, width-d/2), -d); 
     vel = new PVector(0, random(7, 10));
   }
 
   void display() {
-    fill(62, 255, 5);
+    //this allows the coal to be displayed
     image(coal, loc.x, loc.y, d, d);
   }
   void drop() {
-    //this allows each raindrop to fall at different velocities
+    //this allows each coal to fall at different velocities
     loc.add(vel);
   }
 }
